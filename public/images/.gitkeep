@@ -1,0 +1,10 @@
+public/
+└── images/
+    └── profile.jpg      # Letakkan foto profil Anda di sini
+
+Untuk mengganti gambar profil:
+1. Tambahkan foto Anda ke folder public/images/profile.jpg
+2. Update src di Hero.tsx:
+   src="/images/profile.jpg"
+
+Rekomendasi ukuran gambar: 400x400px atau lebih besar (rasio 1:1)

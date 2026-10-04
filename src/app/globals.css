@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* ── Fluid design system ──
+   Reference frame: 1440 × 800 (a 1440px laptop viewport minus browser chrome).
+
+   --u  = "one design pixel" of the reference frame.
+          Scales down proportionally on smaller viewports (bounded by BOTH width and
+          height so full-screen compositions never overflow), and scales up at half
+          rate on larger viewports so big monitors gain breathing room instead of
+          simply making everything bigger.
+          1280×720 ≈ 0.89 · 1440×900 = 1 · 1920×1080 ≈ 1.17 · 2560×1440 ≈ 1.39
+
+   --indent     editorial left edge shared by the hero heading and the section rows.
+   --gutter-end right padding that grows on wide screens so content never exceeds
+                --content-max while full-bleed backgrounds stay full-bleed. */
+:root {
+  --u-raw: min(calc(100vw / 1440), calc(100vh / 800));
+  --u: clamp(0.6px, min(var(--u-raw), calc(0.5px + var(--u-raw) * 0.5)), 1.4px);
+
+  --hero-offset: clamp(7.5rem, 17.7vw, 16rem);
+  --indent: calc(4rem + var(--hero-offset));
+  --content-max: 1200px;
+  --gutter-end: max(5rem, calc(100vw - var(--indent) - var(--content-max)));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Hero section animations ── */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroGraphDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes heroScrollLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(300%);
+  }
+}
+
+.hero-fade-up {
+  opacity: 0;
+  animation: heroFadeUp 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-graph-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: heroGraphDraw 2.5s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+
+.hero-scroll-line {
+  animation: heroScrollLine 2s ease-in-out infinite;
+}
+
+@keyframes heroSvgFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-svg-fade {
+  animation: heroSvgFade 1s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .hero-graph-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .hero-scroll-line {
+    animation: none;
+  }
+}
