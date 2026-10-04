@@ -156,7 +156,7 @@ export default function Projects() {
             {[...logos, ...logos].map((logo, i) => (
               <div key={i} className="flex-shrink-0 flex items-center justify-center transition-all duration-500">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={logo} alt={`Product Logo ${i}`} className="h-16 md:h-24 lg:h-32 object-contain" />
+                <img src={logo} alt={`Product Logo ${i}`} className="h-[clamp(5.5rem,26vw,7rem)] md:h-40 lg:h-64 object-contain" />
               </div>
             ))}
           </div>
