@@ -4,6 +4,16 @@ import { useState } from "react";
 
 export default function Contact() {
   const [showPdf, setShowPdf] = useState(false);
+
+  const openCv = () => {
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    const inlineSupported = navigator.pdfViewerEnabled !== false && !isMobile;
+    if (inlineSupported) {
+      setShowPdf(true);
+    } else {
+      window.open("/CV Ahmad Syah Ramadhan.pdf", "_blank", "noopener,noreferrer");
+    }
+  };
   return (
     <section id="contact" className="relative w-full min-h-screen flex items-center justify-center py-32 overflow-hidden">
       {/* Background with technical grid */}
@@ -60,7 +70,7 @@ export default function Contact() {
         <div className="bg-white p-12 md:p-16 w-full md:w-[450px] min-h-[450px] shadow-xl relative z-10 -mt-12 md:mt-0 md:-translate-x-12 flex flex-col justify-center">
           <div className="flex flex-col gap-6 md:pl-20 text-xs tracking-widest text-[#2C2416]/50 uppercase font-bold">
             <button 
-              onClick={(e) => { e.preventDefault(); setShowPdf(true); }} 
+              onClick={(e) => { e.preventDefault(); openCv(); }} 
               className="text-left hover:text-[#2C2416] cursor-pointer transition-colors duration-300"
             >
               Resume / CV

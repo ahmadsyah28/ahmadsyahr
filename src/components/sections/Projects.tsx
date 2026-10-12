@@ -1,44 +1,8 @@
 "use client";
 
 import { useState } from "react";
-
-const projects = [
-  {
-    title: "FLOWIN",
-    category: "Mobile App Development",
-    description: "Developed the Flowin mobile app, translating service needs into features and integrating backend services.",
-  },
-  {
-    title: "GetSmart",
-    category: "Product Management & Strategy",
-    description: "Defined product requirements and user flows, coordinating development for students, teachers, and parents.",
-  },
-  {
-    title: "Sigap Stunting",
-    category: "Product Management",
-    description: "Structured user flows and digital features for monitoring and reporting based on Posyandu cadres' needs.",
-  },
-  {
-    title: "Daur Tani",
-    category: "UX Research & Product Strategy",
-    description: "Conducted stakeholder interviews and translated findings into product requirements for the development team.",
-  },
-  {
-    title: "CIRVIA",
-    category: "Software Engineering & Computer Vision",
-    description: "Developed virtual circuit simulation features enabling physical hand interactions via computer vision.",
-  },
-  {
-    title: "Ecoflow",
-    category: "IoT & Mobile App Development",
-    description: "Built a Flutter app integrated with ESP32-S3 for real-time water quality monitoring and data visualization.",
-  },
-  {
-    title: "GetDIRME",
-    category: "Product Management & Leadership",
-    description: "Led product development for an LMS, defining interactive features, evaluation tools, and detailed activity tracking.",
-  },
-];
+import Link from "next/link";
+import { projectsData } from "@/data/projects";
 
 const logos = [
   "/product/flowin.png",
@@ -95,11 +59,11 @@ export default function Projects() {
       </div>
 
       <div className="relative z-10 flex flex-col border-t border-[#2C2416]/10">
-        {projects.map((project, index) => {
+        {projectsData.map((project, index) => {
           const isActive = activeIndex === index;
           return (
             <div
-              key={index}
+              key={project.slug}
               onClick={() => setActiveIndex(isActive ? null : index)}
               className={`group flex flex-col md:flex-row md:items-center cursor-pointer transition-all duration-700 ease-in-out border-b border-[#2C2416]/10 px-8 md:px-12 lg:pl-[var(--indent)] lg:pr-[var(--gutter-end)] py-10 md:py-16 overflow-hidden ${isActive ? "bg-[#4E443A] text-[#F8F6EF]" : "hover:bg-[#EAE4D9]/70 text-[#2C2416]"
                 }`}
@@ -114,15 +78,28 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* Description */}
+              {/* Description & See More CTA */}
               <div
                 className={`w-full transition-all duration-700 ease-in-out overflow-hidden flex items-center md:-ml-4 lg:-ml-8 ${isActive ? "max-h-[500px] mt-6 md:mt-0 md:w-[55%] lg:w-[50%]" : "max-h-0 mt-0 md:w-0"
                   }`}
               >
-                <div className={`md:pl-10 h-full flex items-center transition-opacity duration-500 ${isActive ? "opacity-100 delay-300" : "opacity-0 delay-0"}`}>
+                <div className={`md:pl-10 h-full flex flex-col justify-center items-start gap-4 transition-opacity duration-500 ${isActive ? "opacity-100 delay-300" : "opacity-0 delay-0"}`}>
                   <p className="text-sm md:text-sm lg:text-base leading-relaxed opacity-90 border-l-0 md:border-l md:border-white/20 md:pl-6 text-justify">
-                    {project.description}
+                    {project.shortDescription}
                   </p>
+                  
+                  <div className="md:pl-6 pt-1">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#F8F6EF] text-[#2C2416] text-xs md:text-sm font-semibold tracking-wide hover:bg-[#E5DCC3] hover:shadow-md transition-all duration-300 group/btn"
+                    >
+                      <span>See More</span>
+                      <span className="w-5 h-5 rounded-full bg-[#2C2416] text-[#F8F6EF] flex items-center justify-center text-[10px] group-hover/btn:translate-x-0.5 transition-transform duration-300">
+                        →
+                      </span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -131,7 +108,7 @@ export default function Projects() {
       </div>
 
       {/* Logos Marquee */}
-      <div className="relative z-10 pt-20 pb-36 md:pt-32 lg:pb-[max(9rem,10vw)] overflow-hidden flex flex-col items-center">
+      <div className="relative z-10 pt-16 pb-48 md:pt-24 md:pb-64 lg:pb-80 overflow-hidden flex flex-col items-center">
         <div className="w-full relative overflow-hidden flex mask-image-fade">
           <style>{`
             @keyframes marquee {
@@ -156,7 +133,7 @@ export default function Projects() {
             {[...logos, ...logos].map((logo, i) => (
               <div key={i} className="flex-shrink-0 flex items-center justify-center transition-all duration-500">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={logo} alt={`Product Logo ${i}`} className="h-[clamp(5.5rem,26vw,7rem)] md:h-40 lg:h-64 object-contain" />
+                <img src={logo} alt={`Product Logo ${i}`} className="h-16 md:h-24 lg:h-32 object-contain" />
               </div>
             ))}
           </div>
