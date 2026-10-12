@@ -169,7 +169,7 @@ export default function Hero() {
             {heroHeadings[headingIndex].line1}
           </span>
           <span
-            className="block text-[length:clamp(1.75rem,9vw,3.25rem)] md:text-[length:clamp(2.2rem,6vw,7rem)] font-black text-[#E8C84A] hero-fade-up"
+            className="block text-[length:clamp(1.75rem,9vw,3.25rem)] md:text-[length:clamp(2.2rem,6vw,7rem)] font-black text-[#d6c69cff] hero-fade-up"
             style={{ animationDelay: "0.32s" }}
             key={`line2-${headingIndex}`}
           >

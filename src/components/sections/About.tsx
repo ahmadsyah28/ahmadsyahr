@@ -62,7 +62,7 @@ export default function About() {
       <div
         className={`hidden md:flex absolute z-40 rounded-[10%] md:rounded-full pointer-events-none flex-col items-center justify-center text-center w-[150vw] h-[100vh] -top-[10%] -left-[25%] md:w-[min(1050px,120vw)] md:h-[min(1050px,120vw)] md:top-auto md:-bottom-[68%] md:-left-[10%] transition-transform duration-500 ease-out ${isHovered ? "md:-translate-x-[100px]" : "translate-x-0"}`}
         style={{
-          backgroundColor: "#F7E28E",
+          backgroundColor: "#f2e0b1ff",
         }}
       >
         {/* Bio text lives inside the circle so it moves with it */}
@@ -83,7 +83,7 @@ export default function About() {
           {/* Perfect yellow circle — sized by width but capped by screen height so it stays round on every phone */}
           <div
             className="absolute -top-[16svh] -left-[10vw] aspect-square w-[min(130vw,75svh)] sm:w-[min(100vw,75svh)] rounded-full pointer-events-none"
-            style={{ backgroundColor: "#F7E28E" }}
+            style={{ backgroundColor: "#f2e0b1ff" }}
             aria-hidden="true"
           />
 
@@ -130,7 +130,7 @@ export default function About() {
         <div
           className={`absolute z-10 rounded-full pointer-events-none w-[120vw] pb-[120vw] md:w-[min(700px,100vw)] md:pb-[min(700px,100vw)] -right-[20%] -bottom-[20%] md:-right-[0%] md:-bottom-[50%] transition-transform duration-500 ease-out ${isHovered ? "translate-x-[150px] md:translate-x-[550px] scale-105" : "translate-x-0 scale-100"}`}
           style={{
-            backgroundColor: "#E9CB55",
+            backgroundColor: "#c5ac6eff",
             opacity: 0.75,
           }}
           aria-hidden="true"
